@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pengumuman Kelulusan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pengumuman Kelulusan Siswa</h2>
+  <p>Masukkan NISN Anda:</p>
+  <input type="text" id="nisn" placeholder="Contoh: 1234567890">
+  <button onclick="cekKelulusan()">Cek Kelulusan</button>
+  <div class="result" id="hasil"></div>
+</div>
+
+<script>
+  // Contoh data siswa (bisa diganti dengan data asli)
+  const dataKelulusan = {
+    "1234567890": { nama: "Ahmad Fauzi", status: "LULUS" },
+    "0987654321": { nama: "Siti Aminah", status: "TIDAK LULUS" },
+    "1122334455": { nama: "Budi Santoso", status: "LULUS" }
+  };
+
+  function cekKelulusan() {
+    const nisn = document.getElementById('nisn').value.trim();
+    const hasil = document.getElementById('hasil');
+
+    if (dataKelulusan[nisn]) {
+      const data = dataKelulusan[nisn];
+      hasil.innerHTML = `Nama: ${data.nama}<br>Status Kelulusan: <span style="color:${data.status === 'LULUS' ? 'green' : 'red'}">${data.status}</span>`;
+    } else {
+      hasil.innerHTML = "<span style='color:red;'>Data tidak ditemukan. Periksa kembali NISN Anda.</span>";
+    }
+  }
+</script>
+
+</body>
+</html>
